@@ -2,6 +2,10 @@
 #define KALMAN_FILTER_H_
 #include "Eigen/Dense"
 
+
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
+
 class KalmanFilter {
 public:
 
@@ -53,16 +57,11 @@ public:
   void Predict();
 
   /**
-   * Updates the state by using standard Kalman Filter equations
+   * Updates the state and
    * @param z The measurement at k+1
    */
-  void Update(const Eigen::VectorXd &z);
-
-  /**
-   * Updates the state by using Extended Kalman Filter equations
-   * @param z The measurement at k+1
-   */
-  void UpdateEKF(const Eigen::VectorXd &z);
+  void UpdateLaser(const VectorXd &z);
+  void UpdateRadar(const VectorXd &z, const VectorXd &z_pred);
 
 };
 
